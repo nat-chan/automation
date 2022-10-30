@@ -82,6 +82,14 @@ with tqdm(total=b(N, 0)) as pbar:
     fin2 = Image.fromarray(fin2_arr)
     fin2
 
+H = 2172
+h_out = list()
+lastline = fin2_arr[-1, :, :].copy()
+for h in range(H-len(fin2_arr)):
+    _lastline = lastline.copy()
+    np.random.RandomState(h).shuffle(_lastline)
+    h_out.append(_lastline[None, :, :])
+Image.fromarray(np.vstack([fin2_arr]+h_out))
 
 def search():
     for i in range(55, 55+1):
